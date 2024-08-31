@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+.menu li > *:not(ul):not(.menu-title):not(details):active{
+  @apply bg-white text-black;
+}
+
 :root {
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;

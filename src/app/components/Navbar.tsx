@@ -3,18 +3,21 @@ import React from 'react'
 export const Navbar:React.FC = () => {
     return <div className="navbar bg-base-100 bg-white flex items-center justify-center">
     <div className="flex justify-center items-center">
-      <ul className="menu menu-horizontal px-1 text-base">
-        <li><a className="text-black">Link</a></li>
-        <li>
-          <details>
-            <summary className="bg-white text-black">Parent</summary>
-            <ul className="bg-white bg-base-100 rounded-t-none p-2">
-              <li><a className="text-black">Link 1</a></li>
-              <li><a className="text-black">Link 2</a></li>
-            </ul>
-          </details>
-        </li>
-      </ul>
+        <button className="btn btn-ghost text-black text-xl font-medium">David</button>
+        <div className="dropdown dropdown-hover">
+          <div tabIndex={0} role="button" className="btn btn-ghost text-black text-xl font-medium m-1">Collection</div>
+          <ul tabIndex={0} className="dropdown-content menu bg-base-100 rounded-box z-[1] w-40 p-2 shadow text-black text-xl bg-white font-medium">
+            <li><div className="active:bg-white">hello</div></li>
+            <li><div className="">hello</div></li>
+          </ul>
+        </div>
+        <div className="dropdown dropdown-hover">
+          <div tabIndex={0} role="button" className="btn btn-ghost text-black text-xl font-medium m-1">Blog</div>
+          <ul tabIndex={0} className="dropdown-content menu bg-base-100 rounded-box z-[1] w-40 p-2 shadow text-black text-xl bg-white font-medium">
+            <li><div className="active:bg-white">hello</div></li>
+            <li><div className="">hello</div></li>
+          </ul>
+        </div>
     </div>
   </div>
 }
