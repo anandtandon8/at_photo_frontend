@@ -13,7 +13,7 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Anand Tandon Photography",
-  description: "A photography portfolio ",
+  description: "A photography portfolio",
 };
 
 export default function RootLayout({

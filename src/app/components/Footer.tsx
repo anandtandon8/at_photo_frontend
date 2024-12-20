@@ -35,8 +35,9 @@ export const Footer:React.FC = () => {
                         </label>
                         <div className="join">
                             <input
+                                required
                                 type="text"
-                                placeholder="username@site.com"
+                                placeholder="Email*"
                                 className="input input-bordered join-item text-base bg-white" />
                             <button className="btn btn-primary join-item bg-neutral-700 hover:bg-neutral-500 btn-ghost text-white">Subscribe</button>
                         </div>
