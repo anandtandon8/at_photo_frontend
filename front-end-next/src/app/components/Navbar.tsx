@@ -56,10 +56,10 @@ export const Navbar:React.FC = () => {
             <ul className="dropdown-content menu bg-base-100 rounded-box z-[1] p-2 shadow text-black text-lg bg-white font-medium md:min-w-max lg:min-w-max
             ${focusedDropdown === 'collection' ? 'visible opacity-100 scale-100' : ''}`}"
             >
-              <li><div><Link href="/blog/why-photography">Why Photography?</Link></div></li>
-              <li><div><Link href="/blog/how-to-start">How to Start</Link></div></li>
               <li><div><Link href="/blog/camera-basics">Camera Basics</Link></div></li>
+              <li><div><Link href="/blog/how-to-start">How to Start</Link></div></li>
               <li><div><Link href="/blog/rules-of-composition">Rules of Composition</Link></div></li>
+              <li><div><Link href="/blog/why-photography">Why Photography?</Link></div></li>
             </ul>
         </div>
     </div>

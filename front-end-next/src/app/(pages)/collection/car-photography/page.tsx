@@ -3,6 +3,7 @@ import Navbar from "@/app/components/Navbar";
 import Contact from "@/app/components/Contact"
 import Footer from "@/app/components/Footer"
 import GalleryFormat from '@/app/components/GalleryFormat';
+
 import waterfall from '@/app/assets/img/IMG_2122.jpg';
 import sunset from '@/app/assets/img/IMG_2328.jpg';
 import mountain from '@/app/assets/img/IMG_2490.jpg';
