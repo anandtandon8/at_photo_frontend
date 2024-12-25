@@ -3,7 +3,14 @@
 import React, { useState, useRef } from 'react';
 import Image from 'next/image'
 import placeHolderImg from '@/app/assets/img/placeholder-img.png';
+import TextComponents from '@/app/components/BlogFormat/TextComponents';
+import ImageComponents from '@/app/components/BlogFormat/ImageComponents';
+import MiscComponents from '@/app/components/BlogFormat/MiscComponents';
 
+
+interface LineBreak {
+    type: 'lineBreak';
+}
 
 interface Text {
     type: 'text';
@@ -14,19 +21,27 @@ interface Text {
 interface BlockQuote {
     type: 'blockquote';
     content: string;
-    author: string;
+    author?: string;
+}
+
+interface BulletPoint {
+    type: 'bulletPoint';
+    title?: string;
+    content: string;
 }
 
 interface List {
     type: 'list';
     listType: 'numbered' | 'bulleted';
-    content: string[];
+    listTitle?: string;
+    content: BulletPoint[];
 }
+
 
 interface Image {
     type: 'image';
     imageType: 'left' | 'right' | 'centerBreak';    // WRAPPED IMAGES MUST BE BEFORE THE TEXT THAT WRAPS AROUND THEM IN RENDERING ORDER
-    wrappedText: string;
+    wrappedText: Text | BlockQuote | List;
     src: string;
     alt: string;
     width: number;
@@ -45,7 +60,7 @@ interface BlogComponents {
     description: string;
     date: string;
     author: string;
-    components: (Text | BlockQuote | List | Image | Video)[];
+    components: (LineBreak | Text | BlockQuote | List | Image | Video)[];
 }
 
 
@@ -84,7 +99,7 @@ const BlogFormat: React.FC<BlogComponents> = ({ title, description, date, author
             <div className="relative">
                 <img 
                 ref={fullImg}
-                className="w-auto h-auto max-w-[80vh] max-h-[80vh] object-contain"
+                className="w-auto h-auto max-w-[60vw] max-h-[75vh] object-contain"
                 alt="Enlarged view"
                 />
                 <span 
@@ -96,135 +111,43 @@ const BlogFormat: React.FC<BlogComponents> = ({ title, description, date, author
             </div>
         </div>
 
-        <div className="container mx-auto px-4 pt-12 pb-2">
-            <article className="prose lg:prose-xl max-w-4xl mx-auto">
-                <h1 className="text-4xl font-bold mb-1 text-black">{title}</h1>
-                <h2 className="text-lg mb-1 text-black">{description}</h2>
-                <p className="mb-[1px] text-gray-700">{author}</p>
-                <p className="mb-6 text-gray-700">{date}</p>
-                {components.map((component, index) => {
-                    switch (component.type) {
-                        case 'text': 
-                            const curText = component as Text;
-                            switch (curText.textType) {
-                                case 'h1':
-                                    return <h1 key={index} className="text-4xl font-bold my-4 text-black">{curText.content}</h1>;
-                                case 'h2':
-                                    return <h2 key={index} className="text-2xl font-semibold my-4 text-black">{curText.content}</h2>;
-                                case 'h3':
-                                    return <h3 key={index} className="text-xl font-semibold my-2 text-black">{curText.content}</h3>;
-                                case 'p':
-                                    return <p key={index} className="my-2 text-black">{curText.content}</p>;
-                                default: return null;
-                            }
-                        case 'blockquote':
-                            const curBlockQuote = component as BlockQuote;
-                            return <div key={index}>
-                                <blockquote className="border-l-4 border-gray-300 pl-4 italic mt-6 mb-3 text-black">{curBlockQuote.content}</blockquote>
-                                <p className="font-bold text-black pl-4">{'— ' + curBlockQuote.author}</p>
-                            </div>;
-                        case 'list':
-                            const curList = component as List;
-                            switch (component.listType) {
-                                case 'numbered':
-                                    return <ol key={index} className="list-decimal list-inside mb-6 text-black">
-                                        {curList.content.map((item, subIndex) => (
-                                            <li key={`${index}-${subIndex}`}>{item}</li>
-                                        ))}
-                                    </ol>;
-                                case 'bulleted':
-                                    return <ul key={index} className="list-disc list-inside mb-6 text-black">
-                                        {component.content.map((item, subIndex) => (
-                                            <li key={`${index}-${subIndex}`}>{item}</li>
-                                        ))}
-                                    </ul>;
-                                default: return null;
-                            }
-                        case 'image':
-                            const curImage = component as Image;
-                            switch (curImage.imageType) {
-                                case 'left':
-                                    return <div key={index} className="my-6 flex items-start gap-8">
-                                      <div className="flex-shrink-0 w-1/2">
-                                        <Image
-                                          src={imageSrc[index] || curImage.src}
-                                          alt={curImage.alt}
-                                          width={curImage.width}
-                                          height={curImage.height}
-                                          quality={30}
-                                          placeholder="blur"
-                                          blurDataURL={curImage.blurDataURL || placeHolderImg.blurDataURL}
-                                          className="object-contain w-full h-auto"
-                                          onError={() => handleImageError(index)}
-                                          onClick={() => focusImage(curImage)}
-                                        />
-                                      </div>
-                                      <p className="mt-1 flex-1 text-black">{curImage.wrappedText}</p>
-                                  </div>;
-                                case 'right':
-                                    return <div key={index} className="my-6 flex items-start gap-8">
-                                      <p className="mt-1 flex-1 text-black">{curImage.wrappedText}</p>
-                                      <div className="flex-shrink-0 w-1/2">
-                                        <Image
-                                          src={imageSrc[index] || curImage.src}
-                                          alt={curImage.alt}
-                                          width={curImage.width}
-                                          height={curImage.height}
-                                          quality={30}
-                                          placeholder="blur"
-                                          blurDataURL={curImage.blurDataURL || placeHolderImg.blurDataURL}
-                                          className="object-contain w-full h-auto"
-                                          onError={() => handleImageError(index)}
-                                          onClick={() => {focusImage(curImage); console.log(curImage.src)}}
-                                        />
-                                      </div>
-                                  </div>;
-                                case 'centerBreak':
-                                    return <div key={index} className="my-6 relative text-black mx-auto">
-                                    <Image
-                                      src={imageSrc[index] || curImage.src}
-                                      alt={curImage.alt}
-                                      width={curImage.width}
-                                      height={curImage.height}
-                                      quality={30}
-                                      placeholder="blur"
-                                      blurDataURL={component.blurDataURL || placeHolderImg.blurDataURL}
-                                      className="object-cover w-full h-full"
-                                      onError={() => handleImageError(index)}
-                                      onClick={() => focusImage(curImage)}
-                                    />
-                                  </div>;
-
-                                  default: return null;
-                            }
-                        case 'video':
-                            const curVideo = component as Video;
-                            return <div key={index}>
-                                <h2 className="text-2xl font-semibold mt-8 mb-4 text-black">{curVideo.title}</h2>
-                                <iframe
-                                    className="w-full aspect-video"
-                                    src={curVideo.src}
-                                    title={curVideo.title}
-                                    allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                    allowFullScreen
+        <div className="flex items-start">
+            <div className="max-w-[70vw] mx-auto sm:mx-auto md:ml-auto md:mr-[10vw] lg:ml-auto lg:mr-[10vw] px-4 pt-12 pb-2">
+                <article className="prose lg:prose-xl max-w-4xl mx-auto">
+                    <h1 className="text-4xl font-bold mb-1 text-black">{title}</h1>
+                    <h2 className="text-lg mb-1 text-black">{description}</h2>
+                    <p className="mb-[1px] text-gray-700">{author}</p>
+                    <p className="mb-6 text-gray-700">{date}</p>
+                    {components.map((component, index) => {
+                        switch (component.type) {
+                            case 'text': 
+                                return <TextComponents key={index} text={component} type='text' index={index} />
+                            case 'blockquote':
+                                return <TextComponents key={index} text={component} type='blockquote' index={index} />
+                            case 'list':
+                                return <TextComponents key={index} text={component} type='list' index={index} />
+                            case 'image':
+                                return <ImageComponents 
+                                    imageSrc={imageSrc} 
+                                    key={index} 
+                                    image={component} 
+                                    index={index}
+                                    handleImageError={handleImageError}
+                                    focusImage={focusImage}
                                 />
-                            </div>;
-                        default:
-                            return null;
+                            case 'video':
+                                return <MiscComponents key={index} component={component} type='video' index={index} />
+                            case 'lineBreak':
+                                return <MiscComponents key={index} component={component} type='lineBreak' index={index} />
+                            default:
+                                return null;
+                        }
+                    })}
                     
-                    }
-                })}
-                <h2 className="text-center text-black text-2xl font-semibold pt-6">Thanks for Reading!</h2>
-
-
-            </article>
+                </article>
+            </div>
         </div>
-
-
-        
-
-
-
+        <h2 className="text-center text-black text-2xl font-semibold pt-6">Thanks for Reading!</h2>
     </div>
 }
 

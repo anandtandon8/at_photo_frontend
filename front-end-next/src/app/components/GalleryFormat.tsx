@@ -49,17 +49,17 @@ const GalleryFormat: React.FC<GalleryFormatProps> = ({ images, title, descriptio
       {description && <p className="text-base pl-[3px] mb-6 text-black">{description}</p>}
       <div 
         ref={fullImgBox}
-        className="fixed inset-0 hidden bg-black/80 items-center justify-center z-50"
+        className="h-screen w-screen fixed inset-0 hidden bg-black/80 items-center justify-center z-50"
       >
         <div className="relative">
             <img 
             ref={fullImg}
-            className="w-auto h-auto max-w-[80vh] max-h-[80vh] object-contain"
+            className="w-auto h-auto max-w-[60vw] max-h-[75vh] object-contain"
             alt="Enlarged view"
             />
             <span 
                 onClick={closeFullImg}
-                className="absolute -top-[72px] -right-[56px] text-white text-6xl cursor-pointer hover:text-gray-300"
+                className="absolute top-[-72px] right-[-56px] text-white text-6xl cursor-pointer hover:text-gray-300"
             >
                 ×
             </span>
