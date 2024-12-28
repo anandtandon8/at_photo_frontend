@@ -41,48 +41,68 @@ const TextComponent: React.FC<TextComponentProps> = ({ text, type, index }) => {
                 case 'h2':
                     return <h2 key={index} className="text-2xl font-semibold my-4 text-black">{curText.content}</h2>;
                 case 'h3':
-                    return <h3 key={index} className="text-xl font-semibold my-2 text-black">{curText.content}</h3>;
+                    return <h3 key={index} className="text-xl font-semibold my-4 text-black">{curText.content}</h3>;
                 case 'p':
-                    return <p key={index} className="my-2 text-black">{curText.content}</p>;
+                    return <p key={index} className="leading-[30px] my-4 text-black">{curText.content}</p>;
                 default: return null;
             }
         case 'blockquote':
             const curBlockQuote = text as BlockQuote;
             if (curBlockQuote.author) {
-                return <div key={index}>
-                    <blockquote className="border-l-4 border-gray-300 pl-4 italic mt-6 mb-3 text-black">{curBlockQuote.content}</blockquote>
-                            <p className="font-bold text-black pl-4">{'— ' + curBlockQuote.author}</p>
-                        </div>;
+                return <div key={index} className="my-4">
+                    <blockquote className="border-l-4 border-gray-300 pl-4 italic text-black mb-2">{curBlockQuote.content}</blockquote>
+                    <p className="font-bold text-black pl-4">{'— ' + curBlockQuote.author}</p>
+                </div>;
             } else {
-                return <div key={index}>
-                    <blockquote className="border-l-4 border-gray-300 pl-4 italic mt-6 mb-3 text-black">{curBlockQuote.content}</blockquote>
+                return <div key={index} className="my-4">
+                    <blockquote className="border-l-4 border-gray-300 pl-4 italic text-black">{curBlockQuote.content}</blockquote>
                 </div>;
             }
         case 'list':
             const curList = text as List;
             switch (curList.listType) {
                 case 'numbered':
-                    return <ol key={index} className="list-decimal list-inside mb-6 text-black">
-                        {curList.content.map((item, subIndex) => {
-                            if (item.title) {
-                                return <li key={`${index}-${subIndex}`}>{item.title}{item.content}</li>
-                            }
-                            else {
-                                return <li key={`${index}-${subIndex}`}>{item.content}</li>
-                            }
-                        })}
-                    </ol>;
+                    return <div key={index} className="my-4 relative z-0 pointer-events-none">
+                        {curList.listTitle && <h3 className="font-semibold mb-2">{curList.listTitle}</h3>}
+                        <ol className="list-decimal list-outside relative ml-0 pl-5 font-semibold space-y-2 pointer-events-none">
+                            {curList.content.map((item, subIndex) => {
+                                if (item.title) {
+                                    return <li key={`${index}-${subIndex}`}>
+                                        <span className="pointer-events-auto">
+                                            <strong className='font-semibold'>{item.title}</strong>
+                                            <span className='font-normal'>{item.content}</span>
+                                        </span>
+                                    </li>
+                                }
+                                else {
+                                    return <li key={`${index}-${subIndex}`}>
+                                        <span className="pointer-events-auto font-normal">{item.content}</span>
+                                    </li>
+                                }
+                            })}
+                        </ol>
+                    </div>;
                 case 'bulleted':
-                    return <ul key={index} className="list-disc list-inside mb-6 text-black">
-                        {curList.content.map((item, subIndex) => {
-                            if (item.title) {
-                                return <li key={`${index}-${subIndex}`}>{item.title}{item.content}</li>
-                            }
-                            else {
-                                return <li key={`${index}-${subIndex}`}>{item.content}</li>
-                            }
-                        })}
-                    </ul>;
+                    return <div key={index} className="my-4 relative z-0  pointer-events-none">
+                        {curList.listTitle && <h3 className="font-semibold mb-2">{curList.listTitle}</h3>}
+                        <ul className="list-disc list-outside relative ml-0 left-5 font-semibold space-y-2 pointer-events-none">
+                            {curList.content.map((item, subIndex) => {
+                                if (item.title) {
+                                    return <li key={`${index}-${subIndex}`}>
+                                        <span className="pointer-events-auto">
+                                            <strong className='font-semibold'>{item.title}</strong>
+                                            <span className='font-normal'>{item.content}</span>
+                                        </span>
+                                    </li>
+                                }
+                                else {
+                                    return <li key={`${index}-${subIndex}`}>
+                                        <span className="pointer-events-auto font-normal">{item.content}</span>
+                                    </li>
+                                }
+                            })}
+                        </ul>
+                    </div>;
                 default: return null;
             }
         default: return null;

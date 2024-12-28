@@ -2,6 +2,7 @@
 
 import React, { useState, useRef } from 'react';
 import Image from 'next/image';
+
 import placeHolderImg from '@/app/assets/img/placeholder-img.png';
 
 interface GalleryImage {
@@ -54,7 +55,7 @@ const GalleryFormat: React.FC<GalleryFormatProps> = ({ images, title, descriptio
         <div className="relative">
             <img 
             ref={fullImg}
-            className="w-auto h-auto max-w-[60vw] max-h-[75vh] object-contain"
+            className="w-auto h-auto max-w-[65vw] max-h-[75vh] object-contain"
             alt="Enlarged view"
             />
             <span 
@@ -69,7 +70,7 @@ const GalleryFormat: React.FC<GalleryFormatProps> = ({ images, title, descriptio
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 max-w-[100%] mx-auto justify-center">
         {images.map((image, index) => (
-          <div key={index} className="relative aspect-square overflow-visible max-w-[420px] sm:max-w-full text-black">
+          <div key={index} className="relative aspect-square overflow-visible max-w-[420px] sm:max-w-full text-black cursor-pointer">
             <Image
               src={imageSrc[index] || image.src}
               alt={image.alt}

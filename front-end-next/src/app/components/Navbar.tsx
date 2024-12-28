@@ -51,7 +51,7 @@ export const Navbar:React.FC = () => {
             role="button"
             className="btn btn-ghost text-black text-xl font-medium m-1"
           >
-            <Link href="/blog">Blog</Link>
+            Blog
           </div>
             <ul className="dropdown-content menu bg-base-100 rounded-box z-[1] p-2 shadow text-black text-lg bg-white font-medium md:min-w-max lg:min-w-max
             ${focusedDropdown === 'collection' ? 'visible opacity-100 scale-100' : ''}`}"

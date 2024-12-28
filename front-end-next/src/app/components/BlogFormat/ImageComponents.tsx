@@ -3,7 +3,6 @@
 import React, { useState, useRef } from 'react';
 import Image from 'next/image'
 import placeHolderImg from '@/app/assets/img/placeholder-img.png';
-import TextComponent from '@/app/components/BlogFormat/TextComponents'
 
 
 interface Text {
@@ -34,7 +33,8 @@ interface List {
 interface Image {
     type: 'image';
     imageType: 'left' | 'right' | 'centerBreak';
-    wrappedText: Text | BlockQuote | List;
+    wrappedText?: Text | BlockQuote | List;
+    widthPercentage?: number;
     src: string;
     alt: string;
     width: number;
@@ -59,54 +59,50 @@ const ImageComponent: React.FC<ImageComponentProps> = ({
     focusImage,
 }) => {
 
+    if (!image.widthPercentage) image.widthPercentage = 50;
+
     switch (image.imageType) {
         case 'left':
-            return <div key={index} className="my-6 flex items-start gap-8">
-                <div className="flex-shrink-0 w-1/2">
-                    <Image
+            return <div style={{width: `${image.widthPercentage}%`}} key={index} className="relative float-left mr-7 mb-2 cursor-pointer">
+                <Image
                     src={imageSrc[index] || image.src}
                     alt={image.alt}
                     width={image.width}
                     height={image.height}
-                    quality={30}
+                    quality={40}
                     placeholder="blur"
                     blurDataURL={image.blurDataURL || placeHolderImg.blurDataURL}
-                    className="object-contain w-full h-auto"
+                    className="object-contain w-full h-auto rounded-xl pointer-events-auto"
                     onError={() => handleImageError(index)}
                     onClick={() => focusImage(image)}
-                    />
-                </div>
-                <TextComponent text={image.wrappedText} type={image.wrappedText.type} index={index} />
+                />
             </div>;
         case 'right':
-            return <div key={index} className="my-6 flex items-start gap-8">
-                <TextComponent text={image.wrappedText} type={image.wrappedText.type} index={index} />
-                <div className="flex-shrink-0 w-1/2">
-                    <Image
+            return <div style={{width: `${image.widthPercentage}%`}} key={index} className="relative float-right ml-7 mb-2 cursor-pointer">
+                <Image
                     src={imageSrc[index] || image.src}
                     alt={image.alt}
                     width={image.width}
                     height={image.height}
-                    quality={30}
+                    quality={40}
                     placeholder="blur"
                     blurDataURL={image.blurDataURL || placeHolderImg.blurDataURL}
-                    className="object-contain w-full h-auto"
+                    className="object-contain w-full h-auto rounded-xl pointer-events-auto"
                     onError={() => handleImageError(index)}
-                    onClick={() => {focusImage(image)}}
-                    />
-                </div>
+                    onClick={() => focusImage(image)}
+                />
             </div>;
         case 'centerBreak':
-            return <div key={index} className="my-6 relative text-black mx-auto">
+            return <div key={index} className="relative mb-4 text-black mx-auto cursor-pointer">
                 <Image
                 src={imageSrc[index] || image.src}
                 alt={image.alt}
                 width={image.width}
                 height={image.height}
-                quality={30}
+                quality={50}
                 placeholder="blur"
                 blurDataURL={image.blurDataURL || placeHolderImg.blurDataURL}
-                className="object-cover w-full h-full"
+                className="object-cover w-full h-full rounded-xl"
                 onError={() => handleImageError(index)}
                 onClick={() => focusImage(image)}
                 />
