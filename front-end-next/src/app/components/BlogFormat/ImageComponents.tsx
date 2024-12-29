@@ -102,7 +102,7 @@ const ImageComponent: React.FC<ImageComponentProps> = ({
                 quality={50}
                 placeholder="blur"
                 blurDataURL={image.blurDataURL || placeHolderImg.blurDataURL}
-                className="object-cover w-full h-full rounded-xl"
+                className="object-cover w-full h-full rounded-2xl"
                 onError={() => handleImageError(index)}
                 onClick={() => focusImage(image)}
                 />

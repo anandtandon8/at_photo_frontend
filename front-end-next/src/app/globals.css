@@ -94,3 +94,14 @@ body {
   }
 }
 
+.font-inter {
+  font-family: var(--font-inter);
+}
+
+.btn .absolute {
+  opacity: 0.4; /* Adjust the opacity level as needed */
+}
+
+.btn:hover .absolute {
+  opacity: 0.8; /* Adjust the opacity level as needed */
+}

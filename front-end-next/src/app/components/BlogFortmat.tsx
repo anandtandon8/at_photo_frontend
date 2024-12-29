@@ -1,12 +1,14 @@
 'use client'
 
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import Image from 'next/image'
 import placeHolderImg from '@/app/assets/img/placeholder-img.png';
 import TextComponents from '@/app/components/BlogFormat/TextComponents';
 import ImageComponents from '@/app/components/BlogFormat/ImageComponents';
 import MiscComponents from '@/app/components/BlogFormat/MiscComponents';
 import BlogViewer from '@/app/components/BlogViewer';
+
+import downArrow from '@/app/assets/img/down-arrow.png';
 
 
 interface LineBreak {
@@ -67,6 +69,8 @@ interface BlogComponents {
 
 const BlogFormat: React.FC<BlogComponents> = ({ title, description, date, author, components }) => {
     const [imageSrc, setImageSrc] = useState<{ [key: number]: string }>({});
+    const BlogDiv = useRef<HTMLDivElement>(null);
+    const [showScrollButton, setShowScrollButton] = useState(true);
     const fullImgBox = useRef<HTMLDivElement>(null);
     const fullImg = useRef<HTMLImageElement>(null);
 
@@ -90,6 +94,23 @@ const BlogFormat: React.FC<BlogComponents> = ({ title, description, date, author
             fullImgBox.current.style.display = 'none';
         }
     }
+
+    const scrollToBottom = () => {
+        const bottomDiv = document.getElementById('bottom-div');
+        if (bottomDiv) {
+          bottomDiv.scrollIntoView({ behavior: 'smooth', block: 'end' });
+        }
+      };
+    
+      const handleScroll = () => {
+        if (BlogDiv.current) {
+          setShowScrollButton((BlogDiv.current.getBoundingClientRect().bottom - window.innerHeight) > 400);
+        }
+      };
+    
+      useEffect(() => {
+        handleScroll();
+      }, []);
     
     
     return <div>
@@ -111,12 +132,22 @@ const BlogFormat: React.FC<BlogComponents> = ({ title, description, date, author
                 </span>
             </div>
         </div>
-        <div className="flex flex-col-reverse lg:flex-row items-start pt-6 -mb-8 lg:pb-2 lg:mb-0">
-            <div className="mx-auto w-auto mt-5 lg:mt-0 lg:ml-auto lg:mr-0 lg:sticky lg:-top-[calc(4*420px-80px-100vh)]">
+
+        <div className={`fixed bottom-10 right-3 z-50 transition-opacity duration-300 ${showScrollButton ? 'opacity-100' : 'opacity-0'}`}>
+            <button
+            onClick={scrollToBottom}
+            className="btn btn-circle w-12 h-12 bg-neutral-100 hover:bg-neutral-300 btn-ghost text-white"
+            >
+            <Image src={downArrow} alt="down arrow" className="w-7 h-7"/>
+            </button>
+        </div>
+
+        <div className="flex flex-col-reverse lg:flex-row lg:justify-between items-start pt-6 -mb-8 lg:pb-2 lg:mb-0 lg:mr-10">
+            <div className="mx-auto w-auto mt-5 lg:mt-0 lg:sticky lg:-top-[calc(4*420px-80px-100vh)]">
                 <BlogViewer title={title} />
             </div>
-            <div className="w-[75vw] lg:w-[60vw] mx-auto lg:ml-auto lg:mr-[5vw]">
-                <article className="prose lg:prose-xl max-w-4xl mx-auto">
+            <div ref={BlogDiv} className="w-[75vw] lg:w-[65vw] mx-auto lg:mx-0">
+                <article className="prose max-w-6xl">
                     <h1 className="text-4xl font-bold mb-1 text-black">{title}</h1>
                     <h2 className="text-lg mb-1 text-black">{description}</h2>
                     <p className="mb-[1px] text-gray-700">{author}</p>
@@ -171,10 +202,11 @@ const BlogFormat: React.FC<BlogComponents> = ({ title, description, date, author
                     })}
                     
                 </article>
+                <div id="bottom-div"></div>
                 <h2 className="block lg:hidden text-center text-black text-2xl font-semibold pt-8">Thanks for Reading!<br/><hr className="border-gray-700 my-6 mx-[1vw] border-t-[3px] opacity-[0.60] rounded-full"/>More Blogs</h2>
             </div>
         </div>
-        <hr className="mx-[8vw] border-gray-700 mt-16 border-t-[3px] opacity-[0.60] rounded-full"/>
+        <hr className="mx-auto w-[70vw] border-gray-700 mt-16 border-t-[3px] opacity-[0.60] rounded-full"/>
         <h2 className="hidden lg:block text-center text-black text-2xl font-semibold pt-10 pb-6">Thanks for Reading!</h2>
     </div>
 }

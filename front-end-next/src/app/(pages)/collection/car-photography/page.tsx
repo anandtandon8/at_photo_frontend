@@ -52,7 +52,126 @@ const carImages = [
     blurDataURL: cnTower.blurDataURL
   },
 
-  // ... more car images
+  {
+    src: waterfall.src,
+    alt: 'waterfall',   // get alt from jsonl
+    width: waterfall.width,
+    height: waterfall.height,
+    blurDataURL: waterfall.blurDataURL
+  },
+
+  {
+    src: sunset.src,
+    alt: 'sunset',
+    width: sunset.width,
+    height: sunset.height,
+    blurDataURL: sunset.blurDataURL
+  },
+
+  {
+    src: mountain.src,
+    alt: 'mountain',
+    width: mountain.width,
+    height: mountain.height,
+    blurDataURL: mountain.blurDataURL
+  },
+
+  {
+    src: car.src,
+    alt: 'car',
+    width: car.width,
+    height: car.height,
+    blurDataURL: car.blurDataURL
+  },
+
+  {
+    src: cnTower.src,
+    alt: 'cnTower',
+    width: cnTower.width,
+    height: cnTower.height,
+    blurDataURL: cnTower.blurDataURL
+  },
+
+  {
+    src: waterfall.src,
+    alt: 'waterfall',   // get alt from jsonl
+    width: waterfall.width,
+    height: waterfall.height,
+    blurDataURL: waterfall.blurDataURL
+  },
+
+  {
+    src: sunset.src,
+    alt: 'sunset',
+    width: sunset.width,
+    height: sunset.height,
+    blurDataURL: sunset.blurDataURL
+  },
+
+  {
+    src: mountain.src,
+    alt: 'mountain',
+    width: mountain.width,
+    height: mountain.height,
+    blurDataURL: mountain.blurDataURL
+  },
+
+  {
+    src: car.src,
+    alt: 'car',
+    width: car.width,
+    height: car.height,
+    blurDataURL: car.blurDataURL
+  },
+
+  {
+    src: cnTower.src,
+    alt: 'cnTower',
+    width: cnTower.width,
+    height: cnTower.height,
+    blurDataURL: cnTower.blurDataURL
+  },
+
+  {
+    src: waterfall.src,
+    alt: 'waterfall',   // get alt from jsonl
+    width: waterfall.width,
+    height: waterfall.height,
+    blurDataURL: waterfall.blurDataURL
+  },
+
+  {
+    src: sunset.src,
+    alt: 'sunset',
+    width: sunset.width,
+    height: sunset.height,
+    blurDataURL: sunset.blurDataURL
+  },
+
+  {
+    src: mountain.src,
+    alt: 'mountain',
+    width: mountain.width,
+    height: mountain.height,
+    blurDataURL: mountain.blurDataURL
+  },
+
+  {
+    src: car.src,
+    alt: 'car',
+    width: car.width,
+    height: car.height,
+    blurDataURL: car.blurDataURL
+  },
+
+  {
+    src: cnTower.src,
+    alt: 'cnTower',
+    width: cnTower.width,
+    height: cnTower.height,
+    blurDataURL: cnTower.blurDataURL
+  },
+  
 ];
 
 

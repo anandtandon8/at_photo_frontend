@@ -23,7 +23,7 @@ interface BlogBlockProps {
 
 const BlogBlock: React.FC<BlogBlockProps> = ({ title, link, image, description, date, author }) => {
     return (
-    <div className="w-[60vw] lg:w-[24vw] mx-auto bg-white rounded-xl lg:rounded-lg shadow-md overflow-hidden mb-10 will-change-transform transition-all duration-300 hover:[transform:scale(1.04)]">
+    <div className="w-[60vw] lg:w-[22vw] xl:w-[20vw] bg-white rounded-xl lg:rounded-lg shadow-md overflow-hidden mb-10 will-change-transform transition-all duration-300 hover:[transform:scale(1.04)]">
         <div className="h-48 overflow-hidden">
             <Image
                 src={image.src}

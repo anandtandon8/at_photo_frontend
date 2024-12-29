@@ -17,10 +17,10 @@ export const Navbar:React.FC = () => {
     }
   };
   
-  return <div className="navbar bg-base-100 bg-white flex items-center justify-center">
+  return <div className="navbar bg-base-100 mt-5 flex items-center justify-center">
     <div className="flex justify-center items-center md:gap-6 lg:gap-12">
-        <button className="btn btn-ghost text-black text-xl font-medium"><Link href="/about">About</Link></button>
-        <button className="btn btn-ghost text-black text-xl font-medium"><Link href="/favourites">Favourites</Link></button>
+        <button className="btn btn-ghost text-black text-xl md:text-2xl font-medium"><Link href="/about">About</Link></button>
+        <button className="btn btn-ghost text-black text-xl md:text-2xl font-medium"><Link href="/favourites">Favourites</Link></button>
         <div className="dropdown dropdown-hover"
           onMouseEnter={() => handleMouseEnter('collection')}
         >
@@ -28,11 +28,11 @@ export const Navbar:React.FC = () => {
             ref={buttonRefs.collection}
             tabIndex={0}
             role="button"
-            className="btn btn-ghost text-black text-xl font-medium m-1"
+            className="btn btn-ghost text-black text-xl md:text-2xl font-medium m-1"
           >
             Collection
           </div>
-            <ul className="dropdown-content menu bg-base-100 rounded-box z-[1] p-2 shadow text-black text-lg bg-white font-medium md:min-w-max lg:min-w-max
+            <ul className="dropdown-content menu bg-base-100 rounded-box z-50 p-2 shadow text-black text-lg md:text-xl font-medium md:min-w-max lg:min-w-max
             ${focusedDropdown === 'collection' ? 'visible opacity-100 scale-100' : ''}`}"
             >
               <li><div><Link href="/collection/car-photography">Car Photography</Link></div></li>
@@ -49,11 +49,11 @@ export const Navbar:React.FC = () => {
             ref={buttonRefs.blog}
             tabIndex={0}
             role="button"
-            className="btn btn-ghost text-black text-xl font-medium m-1"
+            className="btn btn-ghost text-black text-xl md:text-2xl font-medium m-1"
           >
             Blog
           </div>
-            <ul className="dropdown-content menu bg-base-100 rounded-box z-[1] p-2 shadow text-black text-lg bg-white font-medium md:min-w-max lg:min-w-max
+            <ul className="dropdown-content menu bg-base-100 rounded-box z-50 p-2 shadow text-black text-lg md:text-xl font-medium md:min-w-max lg:min-w-max
             ${focusedDropdown === 'collection' ? 'visible opacity-100 scale-100' : ''}`}"
             >
               <li><div><Link href="/blog/camera-basics">Camera Basics</Link></div></li>

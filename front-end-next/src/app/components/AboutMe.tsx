@@ -56,6 +56,15 @@ const aboutMeImage:Image = {
     blurDataURL: aboutMe.blurDataURL
 }
 
+const aboutMeImageSmall:Image = {
+    type: 'image',
+    imageType: 'centerBreak',
+    src: aboutMe.src,
+    alt: 'About Me',
+    width: aboutMe.width,
+    height: aboutMe.height,
+    blurDataURL: aboutMe.blurDataURL
+}
 
 
 
@@ -74,8 +83,8 @@ export const AboutMe:React.FC = () => {
         console.log(image);
     }
 
-    return <div className="px-[21vw] w-auto h-auto">
-        <div className="pt-4 flex justify-center mb-4">
+    return <div className="mt-9 px-[8vw] md:px-[12vw] lg:px-[21vw] w-auto h-auto">
+        <div className="pt-4 flex justify-center mb-0 lg:mb-4">
             <TextComponents
                 text={
                     {
@@ -88,15 +97,16 @@ export const AboutMe:React.FC = () => {
                 index={-1}
             />
         </div>
-
-        <ImageComponents
-            imageSrc={aboutMeImage.src}
-            image={aboutMeImage}
-            index={-1}
-            handleImageError={handleImageError}
-            focusImage={focusImage}
-        />
-
+        <div className="hidden lg:block">
+            <ImageComponents
+                imageSrc={aboutMeImage.src}
+                image={aboutMeImage}
+                index={-1}
+                handleImageError={handleImageError}
+                focusImage={focusImage}
+            />
+        </div>
+        <div className="lg:clear-none"></div>
         <div className="relative -right-3">
             <div className="">
                 <TextComponents
@@ -125,7 +135,15 @@ export const AboutMe:React.FC = () => {
                     index={-3}
                 />
             </div>
-
+            <div className="px-2 lg:hidden relative right-3">
+                <ImageComponents
+                    imageSrc={aboutMeImageSmall.src}
+                    image={aboutMeImageSmall}
+                    index={-1}
+                    handleImageError={handleImageError}
+                    focusImage={focusImage}
+                />
+            </div>
             <div className="-mb-1">
                 <TextComponents
                     text={
@@ -151,7 +169,7 @@ export const AboutMe:React.FC = () => {
                         content: `On the other hand, I never truly felt that programming benefitted my photography, 
                         but without programming, I could never have made this website to showcase my work.
                         Although I have decided to focus on programming by pursuing a career as a software engineer, 
-                        Photography will always be a part of my life, and one day I will be able to make something of it 
+                        Photography will always be a part of my life, and one day I hope to be able to make something of it 
                         (I would absolutely love to produce and film a nature documentary series someday).`
                     }
                 }

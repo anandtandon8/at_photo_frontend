@@ -2,6 +2,8 @@
 
 import React, { useEffect, useState } from 'react'
 import Image from 'next/image';
+import Link from 'next/link';
+import TextComponents from '@/app/components/BlogFormat/TextComponents';
 
 import waterfall from '@/app/assets/img/IMG_2122.jpg';
 import sunset from '@/app/assets/img/IMG_2328.jpg';
@@ -26,12 +28,13 @@ const photos1: GalleryImage[] = [
     { src: sunset.src, alt: 'Sunset', width: sunset.width, height: sunset.height, blurDataURL: sunset.blurDataURL },
     { src: car.src, alt: 'Car', width: car.width, height: car.height, blurDataURL: car.blurDataURL },
     { src: cnTower.src, alt: 'CN Tower', width: cnTower.width, height: cnTower.height, blurDataURL: cnTower.blurDataURL },
-    { src: placeHolderImg.src, alt: 'Placeholder', width: placeHolderImg.width, height: placeHolderImg.height, blurDataURL: placeHolderImg.blurDataURL }
+    { src: sunset.src, alt: 'Sunset', width: sunset.width, height: sunset.height, blurDataURL: sunset.blurDataURL }
 ]
 
 let photos2 = structuredClone(photos1);
 
-const photoSpeeds = [Math.random()*6+20, Math.random()*6+20];
+const firstSpeed = Math.random()*5+24;
+const photoSpeeds = [firstSpeed, firstSpeed + (Boolean(Math.round(Math.random())) ? (Math.random()*4+2) : (-(Math.random()*4+2)))];
 const firstDir = Boolean(Math.round(Math.random()));
 const photoDirections = [firstDir, firstDir];
 
@@ -84,44 +87,63 @@ export const Hero: React.FC = () => {
     }, []);
 
     
-    return <div className="w-[90vw] mx-auto pt-2 opacity-90">
-        <div className="scroller">
-            <div className="scroller-inner">
-                {photos1.map((photo, i) => 
-                    <div 
-                        key={i} 
-                        className="w-52 md:w-64 xl:w-72 flex-shrink-0"
-                    >
-                        <Image
-                            src={photo.src}
-                            alt={photo.alt}
-                            width={photo.width}
-                            height={photo.height}
-                            quality={30}
-                            onError={() => handleImageError(i)}
-                            className="filter contrast-[0.8] w-full h-auto object-cover aspect-square rounded-[13px]"
-                        />
-                    </div>
-                )}
+    return <div className="flex justify-center items-center mt-5">
+        <div className="mx-auto absolute z-10 text-4xl md:text-5xl lg:text-6xl text-black mb-5 mt-auto lg:mb-10 xl:mb-20">
+            <h1 className="font-inter pb-2 md:pb-3 lg:pb-5">ATPHOTO PRESENTS...</h1>
+            <div className="flex">
+                <h1 className="font-inter text-black mr-4">AN</h1>
+                <h1 className="font-inter text-white hover:text-red-600 transition-colors duration-300 mr-4 pb-1">INTERACTIVE</h1>
+                <h1 className="font-inter text-black hidden xl:block pb-1">PHOTOGRAPHY</h1>
             </div>
+            <h1 className="font-inter text-black block xl:hidden pb-1">PHOTOGRAPHY</h1>
+            <h1 className="font-inter text-black pb-2 md:pb-3 lg:pb-5">PORTFOLIO</h1>
+            <p className="text-2xl font-[500] -mb-2">View some of my personal favourites here:</p>
+            <Link href="/favourites">
+                <button className="btn btn-md -mt-10 relative overflow-hidden bg-transparent btn-ghost text-white w-40">
+                    <span className="relative z-10 text-base font-[600]">Favourites</span>
+                    <span className="absolute inset-0 bg-neutral-500 z-0 transition-opacity duration-[0ms]"></span>
+                </button>
+            </Link>
         </div>
-        <div className="scroller">
-            <div className="scroller-inner">
-                {photos2.map((photo, i) => 
-                    <div 
-                        key={i} 
-                        className="w-52 md:w-64 xl:w-72 flex-shrink-0"
-                    >
-                        <Image
-                            src={photo.src}
-                            alt={photo.alt}
-                            width={photo.width}
-                            height={photo.height}
-                            quality={30}
-                            className="filter contrast-[0.8] w-full h-auto object-cover aspect-square rounded-[13px]"
-                        />
-                    </div>
-                )}
+        <div className="w-[90vw] mx-auto pt-2 opacity-50 z-0">
+            <div className="scroller">
+                <div className="scroller-inner">
+                    {photos1.map((photo, i) => 
+                        <div 
+                            key={i} 
+                            className="w-52 md:w-64 xl:w-72 flex-shrink-0"
+                        >
+                            <Image
+                                src={photo.src}
+                                alt={photo.alt}
+                                width={photo.width}
+                                height={photo.height}
+                                quality={30}
+                                onError={() => handleImageError(i)}
+                                className="filter contrast-[0.8] w-full h-auto object-cover aspect-square rounded-[13px]"
+                            />
+                        </div>
+                    )}
+                </div>
+            </div>
+            <div className="scroller">
+                <div className="scroller-inner">
+                    {photos2.map((photo, i) => 
+                        <div 
+                            key={i} 
+                            className="w-52 md:w-64 xl:w-72 flex-shrink-0"
+                        >
+                            <Image
+                                src={photo.src}
+                                alt={photo.alt}
+                                width={photo.width}
+                                height={photo.height}
+                                quality={30}
+                                className="filter contrast-[0.8] w-full h-auto object-cover aspect-square rounded-[13px]"
+                            />
+                        </div>
+                    )}
+                </div>
             </div>
         </div>
     </div>

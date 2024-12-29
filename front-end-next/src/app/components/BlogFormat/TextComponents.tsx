@@ -62,7 +62,7 @@ const TextComponent: React.FC<TextComponentProps> = ({ text, type, index }) => {
             const curList = text as List;
             switch (curList.listType) {
                 case 'numbered':
-                    return <div key={index} className="my-4 relative z-0 pointer-events-none">
+                    return <div key={index} className="text-black my-4 relative z-0 pointer-events-none">
                         {curList.listTitle && <h3 className="font-semibold mb-2">{curList.listTitle}</h3>}
                         <ol className="list-decimal list-outside relative ml-0 pl-5 font-semibold space-y-2 pointer-events-none">
                             {curList.content.map((item, subIndex) => {
@@ -83,9 +83,9 @@ const TextComponent: React.FC<TextComponentProps> = ({ text, type, index }) => {
                         </ol>
                     </div>;
                 case 'bulleted':
-                    return <div key={index} className="my-4 relative z-0  pointer-events-none">
+                    return <div key={index} className="text-black my-4 relative z-0  pointer-events-none">
                         {curList.listTitle && <h3 className="font-semibold mb-2">{curList.listTitle}</h3>}
-                        <ul className="list-disc list-outside relative ml-0 left-5 font-semibold space-y-2 pointer-events-none">
+                        <ul className="text-black list-disc list-outside relative ml-0 left-5 font-semibold space-y-2 pointer-events-none">
                             {curList.content.map((item, subIndex) => {
                                 if (item.title) {
                                     return <li key={`${index}-${subIndex}`}>
