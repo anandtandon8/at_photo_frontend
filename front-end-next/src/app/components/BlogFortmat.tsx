@@ -69,10 +69,11 @@ interface BlogComponents {
 
 const BlogFormat: React.FC<BlogComponents> = ({ title, description, date, author, components }) => {
     const [imageSrc, setImageSrc] = useState<{ [key: number]: string }>({});
-    const BlogDiv = useRef<HTMLDivElement>(null);
-    const [showScrollButton, setShowScrollButton] = useState(true);
+    const [showScrollButton, setShowScrollButton] = useState(false);
     const fullImgBox = useRef<HTMLDivElement>(null);
     const fullImg = useRef<HTMLImageElement>(null);
+    const blogDiv = useRef<HTMLDivElement>(null);
+    const buttonDiv = useRef<HTMLDivElement>(null);
 
     const handleImageError = (index: number) => {
         setImageSrc(prev => ({
@@ -103,13 +104,26 @@ const BlogFormat: React.FC<BlogComponents> = ({ title, description, date, author
       };
     
       const handleScroll = () => {
-        if (BlogDiv.current) {
-          setShowScrollButton((BlogDiv.current.getBoundingClientRect().bottom - window.innerHeight) > 400);
+        if (blogDiv.current) {
+            if ((blogDiv.current.getBoundingClientRect().bottom - window.innerHeight) > 400) {
+                setShowScrollButton(true);
+                if (buttonDiv.current) {
+                    buttonDiv.current.style.pointerEvents = 'auto';
+                }
+            }
+            else {
+                setShowScrollButton(false);
+                if (buttonDiv.current) {
+                    buttonDiv.current.style.pointerEvents = 'none';
+                }
+            }
         }
       };
     
       useEffect(() => {
         handleScroll();
+        window.addEventListener('scroll', handleScroll);
+        return () => window.removeEventListener('scroll', handleScroll);
       }, []);
     
     
@@ -133,7 +147,7 @@ const BlogFormat: React.FC<BlogComponents> = ({ title, description, date, author
             </div>
         </div>
 
-        <div className={`fixed bottom-10 right-3 z-50 transition-opacity duration-300 ${showScrollButton ? 'opacity-100' : 'opacity-0'}`}>
+        <div ref={buttonDiv} className={`fixed bottom-10 right-3 z-50 transition-opacity duration-300 ${showScrollButton ? 'opacity-100' : 'opacity-0'}`}>
             <button
             onClick={scrollToBottom}
             className="btn btn-circle w-12 h-12 bg-neutral-100 hover:bg-neutral-300 btn-ghost text-white"
@@ -146,7 +160,7 @@ const BlogFormat: React.FC<BlogComponents> = ({ title, description, date, author
             <div className="mx-auto w-auto mt-5 lg:mt-0 lg:sticky lg:-top-[calc(4*420px-80px-100vh)]">
                 <BlogViewer title={title} />
             </div>
-            <div ref={BlogDiv} className="w-[75vw] lg:w-[65vw] mx-auto lg:mx-0">
+            <div ref={blogDiv} className="w-[75vw] lg:w-[65vw] mx-auto lg:mx-0">
                 <article className="prose max-w-6xl">
                     <h1 className="text-4xl font-bold mb-1 text-black">{title}</h1>
                     <h2 className="text-lg mb-1 text-black">{description}</h2>

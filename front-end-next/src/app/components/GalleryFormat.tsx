@@ -23,10 +23,11 @@ interface GalleryFormatProps {
 
 const GalleryFormat: React.FC<GalleryFormatProps> = ({ images, title, description }) => {
   const [imageSrc, setImageSrc] = useState<{ [key: number]: string }>({});
-  const [showScrollButton, setShowScrollButton] = useState(true);
+  const [showScrollButton, setShowScrollButton] = useState(false);
   const fullImgBox = useRef<HTMLDivElement>(null);
   const fullImg = useRef<HTMLImageElement>(null);
   const GalleryDiv = useRef<HTMLDivElement>(null);
+  const buttonDiv = useRef<HTMLDivElement>(null);
 
   const handleImageError = (index: number) => {
     setImageSrc(prev => ({
@@ -50,6 +51,7 @@ const GalleryFormat: React.FC<GalleryFormatProps> = ({ images, title, descriptio
 
   const scrollToBottom = () => {
     const lastImageBottom = document.getElementById('last-image-bottom');
+    setShowScrollButton(false);
     if (lastImageBottom) {
       lastImageBottom.scrollIntoView({ behavior: 'smooth', block: 'end' });
     }
@@ -57,12 +59,25 @@ const GalleryFormat: React.FC<GalleryFormatProps> = ({ images, title, descriptio
 
   const handleScroll = () => {
     if (GalleryDiv.current) {
-      setShowScrollButton((GalleryDiv.current.getBoundingClientRect().bottom - window.innerHeight) > 400);
-    }
+      if ((GalleryDiv.current.getBoundingClientRect().bottom - window.innerHeight) > 400) {
+          setShowScrollButton(true);
+          if (buttonDiv.current) {
+              buttonDiv.current.style.pointerEvents = 'auto';
+          }
+      }
+      else {
+          setShowScrollButton(false);
+          if (buttonDiv.current) {
+              buttonDiv.current.style.pointerEvents = 'none';
+          }
+      }
+  }
   };
 
   useEffect(() => {
     handleScroll();
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   return (
@@ -88,7 +103,7 @@ const GalleryFormat: React.FC<GalleryFormatProps> = ({ images, title, descriptio
         </div>
         
       </div>
-      <div className={`fixed bottom-10 right-3 z-50 transition-opacity duration-300 ${showScrollButton ? 'opacity-100' : 'opacity-0'}`}>
+      <div ref={buttonDiv} className={`fixed bottom-10 right-3 z-50 transition-opacity duration-300 ${showScrollButton ? 'opacity-100' : 'opacity-0'}`}>
         <button
           onClick={scrollToBottom}
           className="btn btn-circle w-12 h-12 bg-neutral-100 hover:bg-neutral-300 btn-ghost text-white"
