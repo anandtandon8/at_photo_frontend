@@ -91,7 +91,7 @@ const GalleryFormat: React.FC<GalleryFormatProps> = ({ images, title, descriptio
         <div className="relative">
             <img 
             ref={fullImg}
-            className="w-auto h-auto max-w-[65vw] max-h-[75vh] object-contain"
+            className="w-auto h-auto max-w-[65vw] max-h-[75vh] rounded-xl object-contain"
             alt="Enlarged view"
             />
             <span 
