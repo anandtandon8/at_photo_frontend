@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { Saira } from "next/font/google"
+import { Lexend } from "next/font/google"
+
 
 const saira = Saira({
   subsets: ['latin'],
@@ -9,7 +11,11 @@ const saira = Saira({
   variable: '--font-saira'
 });
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Inter({
+  subsets: ["latin"],
+  weight: ['900'],
+  variable: '--font-inter'
+});
 
 export const metadata: Metadata = {
   title: "Anand Tandon Photography",
@@ -22,7 +28,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className={`${saira.variable} ${inter.variable}`}>
       <body className={saira.className}>{children}</body>
     </html>
   );
