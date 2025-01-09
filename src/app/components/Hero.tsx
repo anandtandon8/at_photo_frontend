@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import Image from 'next/image';
 import Link from 'next/link';
 import TextComponents from '@/app/components/BlogFormat/TextComponents';
@@ -42,6 +42,7 @@ const photoDirections = [firstDir, firstDir];
 export const Hero: React.FC = () => {
     const [scrollers, setScrollers] = React.useState<NodeListOf<Element> | null>(null);
     const [imageSrc, setImageSrc] = useState<{ [key: number]: string }>({});
+    const heroDiv = useRef<HTMLDivElement>(null);
   
     const handleImageError = (index: number) => {
       setImageSrc(prev => ({
@@ -54,6 +55,11 @@ export const Hero: React.FC = () => {
 
     useEffect(() => {
         // shuffleArray(photos2);
+        setTimeout(() => {
+            if (heroDiv.current) {
+                heroDiv.current.classList.add('opacity-100');
+            }
+        }, 0)
 
         setTimeout(() => {
             const scrollerElements = document.querySelectorAll('.scroller');
@@ -87,11 +93,11 @@ export const Hero: React.FC = () => {
     }, []);
 
     
-    return <div className="flex justify-center items-center mt-5">
+    return <div ref={heroDiv} className="flex justify-center items-center mt-5 opacity-0 transition-opacity duration-[1400ms]">
         <div className="mx-auto absolute z-10 text-4xl md:text-5xl lg:text-6xl text-black mb-5 mt-auto lg:mb-10 xl:mb-20">
             <h1 className="font-inter pb-2 md:pb-3 lg:pb-5">ATPHOTO PRESENTS...</h1>
             <div className="flex">
-                <h1 className="font-inter text-black mr-4">AN</h1>
+                <h1 className="font-inter text-black mr-4 ">AN</h1>
                 <h1 className="font-inter text-white hover:text-red-600 transition-colors duration-300 mr-4 pb-1">INTERACTIVE</h1>
                 <h1 className="font-inter text-black hidden xl:block pb-1">PHOTOGRAPHY</h1>
             </div>
