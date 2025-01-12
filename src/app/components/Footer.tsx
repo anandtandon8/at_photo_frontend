@@ -1,5 +1,5 @@
 import React from 'react'
-import MailLogo from "@/app/assets/logos/Maillogo.png"
+import MailLogo from "@/app/assets/logos/MailLogo.png"
 import InstagramLogo from "@/app/assets/logos/InstagramLogo.png"
 
 
