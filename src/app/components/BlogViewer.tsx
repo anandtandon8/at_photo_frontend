@@ -69,23 +69,23 @@ interface Exclusion {
 const BlogViewer: React.FC<Exclusion> = ({title}) => {
     const output = [];
     if (title != "About") {
-        output.push(<BlogBlock key={0} title="About" link="about" image={aboutImage} description="About me." date="December 22, 2024" author="Anand Tandon" />);
+        output.push(<BlogBlock key={0} title="About" link="/about" image={aboutImage} description="About me." date="December 22, 2024" author="Anand Tandon" />);
     }
 
     if (title != "Camera Basics") {
-        output.push(<BlogBlock key={1} title="Camera Basics" link="camera-basics" image={cameraBasicsImage} description="How to use your typical DSLR and some neat little tricks." date="December 22, 2024" author="Anand Tandon" />);
+        output.push(<BlogBlock key={1} title="Camera Basics" link="/blog/camera-basics" image={cameraBasicsImage} description="How to use your typical DSLR and some neat little tricks." date="December 22, 2024" author="Anand Tandon" />);
     }
 
     if (title != "How to Start Photography") {
-        output.push(<BlogBlock key={2} title="How to Start Photography" link="how-to-start" image={howToStartImage} description="How to start your photography journey." date="December 22, 2024" author="Anand Tandon" />);
+        output.push(<BlogBlock key={2} title="How to Start Photography" link="/blog/how-to-start" image={howToStartImage} description="How to start your photography journey." date="December 22, 2024" author="Anand Tandon" />);
     }
 
     if (title != "Rules of Composition") {
-        output.push(<BlogBlock key={3} title="Rules of Composition" link="rules-of-composition" image={rulesOfCompositionImage} description="The rules of composition." date="December 22, 2024" author="Anand Tandon" />);
+        output.push(<BlogBlock key={3} title="Rules of Composition" link="/blog/rules-of-composition" image={rulesOfCompositionImage} description="The rules of composition." date="December 22, 2024" author="Anand Tandon" />);
     }
 
     if (title != "Why Photography") {
-        output.push(<BlogBlock key={4} title="Why Photography" link="why-photography" image={whyPhotographyImage} description="Why I love photography." date='December 22, 2024' author='Anand Tandon' />);
+        output.push(<BlogBlock key={4} title="Why Photography" link="/blog/why-photography" image={whyPhotographyImage} description="Why I love photography." date='December 22, 2024' author='Anand Tandon' />);
     }
 
     return output;

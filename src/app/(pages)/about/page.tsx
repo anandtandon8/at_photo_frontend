@@ -2,7 +2,7 @@ import Header from "@/app/components/Header"
 import Navbar from "@/app/components/Navbar";
 import Contact from "@/app/components/Contact"
 import Footer from "@/app/components/Footer"
-import BlogFormat from "@/app/components/BlogFortmat"
+import BlogFormat from "@/app/components/BlogFormat"
 
 const components = [
     {

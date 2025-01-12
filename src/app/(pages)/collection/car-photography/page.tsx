@@ -9,9 +9,18 @@ import sunset from '@/app/assets/img/IMG_2328.jpg';
 import mountain from '@/app/assets/img/IMG_2490.jpg';
 import car from '@/app/assets/img/IMG_4851.jpg';
 import cnTower from '@/app/assets/img/IMG_4885.jpg';
+import { useEffect, useState } from "react";
+
+interface GalleryImage {
+  src: string;
+  alt: string;
+  width: number;
+  height: number;
+  blurDataURL?: string;
+}
 
 
-const carImages = [
+const carImages: GalleryImage[] = [
   {
     src: waterfall.src,
     alt: 'waterfall',   // get alt from jsonl
@@ -171,11 +180,19 @@ const carImages = [
     height: cnTower.height,
     blurDataURL: cnTower.blurDataURL
   },
-  
 ];
 
-
 export default function CarPhotographyPage() {
+  /*
+  const [carImages, setCarImages] = useState<GalleryImage[]>([]);
+
+  useEffect(() => {
+    (async () => {
+      setCarImages(await restApiCall());
+    })();
+  }, []);
+  */
+
   return (
     <main className="bg-white">
         <Header />

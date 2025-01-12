@@ -111,7 +111,7 @@ export const Hero: React.FC = () => {
                 </button>
             </Link>
         </div>
-        <div className="w-[90vw] mx-auto pt-2 opacity-50 z-0">
+        <div className="w-[90vw] mx-auto pt-2 opacity-10 z-0">
             <div className="scroller">
                 <div className="scroller-inner">
                     {photos1.map((photo, i) => 
