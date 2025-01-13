@@ -37,3 +37,6 @@ phases:
 #    files:
 #      # location of test result output
 
+artifacts:
+  files:
+    - appspec.yml
