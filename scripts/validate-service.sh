@@ -8,9 +8,9 @@ echo "Checking container logs..."
 docker logs atphoto
 
 echo "Checking port status..."
-netstat -tulpn | grep LISTEN | grep :443
+netstat -tulpn | grep LISTEN | grep :80
 
-if curl -f https://localhost:443 > /dev/null 2>&1; then
+if curl -f http://localhost:80 > /dev/null 2>&1; then
     echo "Application is running"
     exit 0
 else
