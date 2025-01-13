@@ -1,7 +1,7 @@
 #!/bin/bash
 sleep 10
 
-if curl -f http://localhost:3000 > /dev/null 2>&1; then
+if curl -f http://localhost:80 > /dev/null 2>&1; then
     echo "Application is running"
     exit 0
 else
