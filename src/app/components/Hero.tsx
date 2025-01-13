@@ -111,7 +111,7 @@ export const Hero: React.FC = () => {
                 </button>
             </Link>
         </div>
-        <div className="w-[90vw] mx-auto pt-2 opacity-10 z-0">
+        <div className="w-[90vw] mx-auto pt-2 opacity-50 z-0">
             <div className="scroller">
                 <div className="scroller-inner">
                     {photos1.map((photo, i) => 
@@ -126,6 +126,8 @@ export const Hero: React.FC = () => {
                                 height={photo.height}
                                 quality={30}
                                 onError={() => handleImageError(i)}
+                                placeholder="blur"
+                                blurDataURL={photo.blurDataURL}
                                 className="filter contrast-[0.8] w-full h-auto object-cover aspect-square rounded-[13px]"
                             />
                         </div>
