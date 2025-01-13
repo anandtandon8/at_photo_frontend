@@ -15,6 +15,6 @@ RUN npm ci --omit=dev
 COPY .next ./.next
 COPY next.config.js ./
 
-EXPOSE 80
+EXPOSE 3000
 
 CMD ["npm", "start"]
