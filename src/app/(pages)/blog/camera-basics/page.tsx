@@ -73,7 +73,7 @@ const components = [
             {
                 type: 'bulletPoint' as const,
                 title: 'Hello: ',
-                content: "Shoutout gabe."
+                content: "Hello."
             }
         ]
     },
@@ -97,7 +97,7 @@ const components = [
     {
         type: 'text' as const,
         textType: 'h2' as const,
-        content: "David is a Monkey"
+        content: "More filler text>"
     },
 
     {
@@ -118,7 +118,7 @@ const components = [
     {
         type: 'video' as const,
         title: 'How to Use Your DSLR',
-        src: "https://www.youtube-nocookie.com/embed/BoboO6QPGow?si=YV0TnsnPtAIdZ01x",
+        src: "https://www.youtube.com/embed/ixRKeQMa7Nc?si=V-VaQ3kete13BBVE",
     }
 
 ]
@@ -134,7 +134,7 @@ export default function CameraBasics() {
 
             <BlogFormat
                 title='Camera Basics'
-                description="How to use your typical DSLR and some neat little tricks."
+                description="A filler blog post to display the blog format."
                 date='December 22, 2024'
                 author='Anand Tandon'
                 components={components}
