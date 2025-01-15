@@ -14,7 +14,7 @@ const components = [
 
 export default function WhyPhotography() {
     return (
-        <main className="bg-white">
+        <main className="bg-white overflow-hidden">
             <Header />
             <Navbar />
 

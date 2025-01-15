@@ -12,129 +12,59 @@ import car from '@/app/assets/img/IMG_4851.jpg';
 const components = [
     {
         type: 'text' as const,
-        textType: 'p' as const,
-        content: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
+        textType: 'h1' as const,
+        content: 'Welcome to My New Blog Post'
     },
-
     {
-        type: 'blockquote' as const,
-        content: "\"Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.\"",
-        author: "Anand Tandon"
+        type: 'text' as const,
+        textType: 'p' as const,
+        content: 'This is a paragraph of filler text to demonstrate the blog format. It provides an example of how text can be structured within the blog post.'
     },
-
     {
         type: 'image' as const,
-        imageType: 'right' as const,
-        wrappedText: {
-            type: 'list' as const,
-            listType: 'numbered' as const,
-            listTitle: 'Lorem Ipsum',
-            content: [
-                {
-                    type: 'bulletPoint' as const,
-                    title: 'Lorem Ipsum: ',
-                    content: "Lorem Ipsum is simply dummy text of the printing and typesetting industry."
-                },
-                {
-                    type: 'bulletPoint' as const,
-                    title: 'Hello: ',
-                    content: "Shoutout gabe."
-                },
-            ]
-        },
-        widthPercentage: 60,
+        imageType: 'centerBreak' as const,
         src: waterfall.src,
         alt: 'Waterfall',
         width: waterfall.width,
         height: waterfall.height,
         blurDataURL: waterfall.blurDataURL
     },
-
-    {
-        type: 'text' as const,
-        textType: 'p' as const,
-        content: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
-    },
-
-    {
-        type: 'lineBreak' as const,
-    },
-
-    {
-        type: 'list' as const,
-        listType: 'bulleted' as const,
-        listTitle: 'Lorem Ipsum',
-        content: [
-            {
-                type: 'bulletPoint' as const,
-                title: 'Lorem Ipsum: ',
-                content: "Lorem Ipsum is simply dummy text of the printing and typesetting industry."
-            },
-            {
-                type: 'bulletPoint' as const,
-                title: 'Hello: ',
-                content: "Hello."
-            }
-        ]
-    },
-
-    {
-        type: 'image' as const,
-        imageType: 'right' as const,
-        wrappedText: {
-            type: 'text' as const,
-            textType: 'p' as const,
-            content: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
-        },
-        widthPercentage: 50,
-        src: sunset.src,
-        alt: 'Sunset',
-        width: sunset.width,
-        height: sunset.height,
-        blurDataURL: sunset.blurDataURL
-    },
-
     {
         type: 'text' as const,
         textType: 'h2' as const,
-        content: "More filler text>"
+        content: 'Subheading Example'
     },
-
     {
-        type: 'image' as const,
-        imageType: 'centerBreak' as const,
-        wrappedText: {
-            type: 'text' as const,
-            textType: 'p' as const,
-            content: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
-        },
-        src: car.src,
-        alt: 'Car',
-        width: car.width,
-        height: car.height,
-        blurDataURL: car.blurDataURL
+        type: 'text' as const,
+        textType: 'p' as const,
+        content: 'Here is another paragraph of filler text. This section can be used to elaborate on the topic introduced in the subheading.'
     },
-
     {
-        type: 'video' as const,
-        title: 'How to Use Your DSLR',
-        src: "https://www.youtube.com/embed/ixRKeQMa7Nc?si=V-VaQ3kete13BBVE",
+        type: 'blockquote' as const,
+        content: 'This is a sample blockquote to highlight important information.',
+        author: 'Author Name'
+    },
+    {
+        type: 'list' as const,
+        listType: 'bulleted' as const,
+        listTitle: 'Bullet List',
+        content: [
+            { type: 'bulletPoint' as const, title: 'First bullet point:', content: 'First bullet point' },
+            { type: 'bulletPoint' as const, title: 'Second bullet point:', content: 'Second bullet point' },
+            { type: 'bulletPoint' as const, title: 'Third bullet point:', content: 'Third bullet point' }
+        ]
     }
-
-]
-
-
-
+];
 
 export default function CameraBasics() {
     return (
-        <main className="bg-white">
+        <main className="bg-white overflow-hidden">
             <Header />
             <Navbar />
 
             <BlogFormat
                 title='Camera Basics'
-                description="A filler blog post to display the blog format."
+                description="Another filler blog. Will be writing blogs soon!"
                 date='December 22, 2024'
                 author='Anand Tandon'
                 components={components}

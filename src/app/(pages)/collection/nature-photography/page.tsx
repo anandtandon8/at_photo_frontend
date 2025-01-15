@@ -3,67 +3,41 @@ import Navbar from "@/app/components/Navbar";
 import Contact from "@/app/components/Contact"
 import Footer from "@/app/components/Footer"
 import GalleryFormat from "@/app/components/GalleryFormat";
+import fs from 'fs'
+import path from 'path'
 
-import waterfall from '@/app/assets/img/IMG_2122.jpg';
-import sunset from '@/app/assets/img/IMG_2328.jpg';
-import mountain from '@/app/assets/img/IMG_2490.jpg';
-import car from '@/app/assets/img/IMG_4851.jpg';
-import cnTower from '@/app/assets/img/IMG_4885.jpg';
+interface GalleryImage {
+  src: string;
+  alt: string;
+  width: number;
+  height: number;
+  blurDataURL?: string;
+}
 
-
-const natureImages = [
-  {
-    src: waterfall.src,
-    alt: 'waterfall',   // get alt from jsonl
-    width: waterfall.width,
-    height: waterfall.height,
-    blurDataURL: waterfall.blurDataURL
-  },
-
-  {
-    src: sunset.src,
-    alt: 'sunset',
-    width: sunset.width,
-    height: sunset.height,
-    blurDataURL: sunset.blurDataURL
-  },
-
-  {
-    src: mountain.src,
-    alt: 'mountain',
-    width: mountain.width,
-    height: mountain.height,
-    blurDataURL: mountain.blurDataURL
-  },
-
-  {
-    src: car.src,
-    alt: 'car',
-    width: car.width,
-    height: car.height,
-    blurDataURL: car.blurDataURL
-  },
-
-  {
-    src: cnTower.src,
-    alt: 'cnTower',
-    width: cnTower.width,
-    height: cnTower.height,
-    blurDataURL: cnTower.blurDataURL
-  },
-];
-
+const natureImagesDirectory = path.join(process.cwd(), 'src/app/assets/img/Nature')
+const natureImages: GalleryImage[] = fs.readdirSync(natureImagesDirectory)
+  .filter(file => /\.(jpg|jpeg|png)$/i.test(file))
+  .map(file => {
+    const image = require(`@/app/assets/img/Nature/${file}`).default
+    return {
+      src: image.src,
+      alt: path.basename(file, path.extname(file)),
+      width: image.width,
+      height: image.height,
+      blurDataURL: image.blurDataURL
+    }
+  })
 
 export default function NaturePhotography() {
     return (
-        <main className="bg-white">
+        <main className="bg-white overflow-hidden">
             <Header />
             <Navbar />
 
             <GalleryFormat 
                 images={natureImages}
                 title="Nature Photography"
-                description="Nature is a major passion of mine. I love the outdoors and I love the beauty of nature. I'm not a professional but I love to capture the beauty of nature."
+                description="I absolutely love the outdoors and the beauty of nature. I work to not only capture this beauty but to also capture the calmness and peace that nature can bring in my photography."
             />
 
             <Contact />

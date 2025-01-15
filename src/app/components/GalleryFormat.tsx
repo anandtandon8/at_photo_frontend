@@ -25,9 +25,10 @@ const GalleryFormat: React.FC<GalleryFormatProps> = ({ images, title, descriptio
   const [imageSrc, setImageSrc] = useState<{ [key: number]: string }>({});
   const [showScrollButton, setShowScrollButton] = useState(false);
   const fullImgBox = useRef<HTMLDivElement>(null);
-  const fullImg = useRef<HTMLImageElement>(null);
+  const [enlargedImage, setEnlargedImage] = useState(placeHolderImg);
   const GalleryDiv = useRef<HTMLDivElement>(null);
   const buttonDiv = useRef<HTMLDivElement>(null);
+  const [imageLoaded, setImageLoaded] = useState(false);
 
   const handleImageError = (index: number) => {
     setImageSrc(prev => ({
@@ -37,16 +38,20 @@ const GalleryFormat: React.FC<GalleryFormatProps> = ({ images, title, descriptio
   };
 
   const focusImage = (image: GalleryImage) => {
-    if (fullImgBox.current && fullImg.current) {
+    if (fullImgBox.current) {
       fullImgBox.current.style.display = 'flex';
-      fullImg.current.src = image.src;
+      setEnlargedImage(image);
+      setShowScrollButton(false);
     }
   }
 
   const closeFullImg = () => {
     if (fullImgBox.current) {
       fullImgBox.current.style.display = 'none';
+      setImageLoaded(false);
+      handleScroll()
     }
+    setImageLoaded(false);
   }
 
   const scrollToBottom = () => {
@@ -89,28 +94,33 @@ const GalleryFormat: React.FC<GalleryFormatProps> = ({ images, title, descriptio
         className="h-screen w-screen fixed inset-0 hidden bg-black/80 items-center justify-center z-50"
       >
         <div className="relative">
-            <img 
-            ref={fullImg}
-            className="w-auto h-auto max-w-[65vw] max-h-[75vh] rounded-xl object-contain"
-            alt="Enlarged view"
+            <Image 
+                placeholder="blur"
+                blurDataURL={enlargedImage.blurDataURL}
+                src={enlargedImage.src}
+                width={enlargedImage.width}
+                height={enlargedImage.height}
+                className="w-auto h-auto max-w-[65vw] max-h-[75vh] object-contain rounded-xl"
+                alt="Enlarged view"
+                onLoad={() => setImageLoaded(true)}
             />
-            <span 
-                onClick={closeFullImg}
-                className="absolute top-[-72px] right-[-56px] text-white text-6xl cursor-pointer hover:text-gray-300"
-            >
-                ×
-            </span>
+                <span 
+                    onClick={closeFullImg}
+                    className={`absolute top-[-72px] right-[-56px] text-white text-6xl cursor-pointer hover:text-gray-300 transition-opacity duration-[600ms] ${imageLoaded ? 'opacity-100' : 'opacity-0'}`}
+                >
+                    ×
+                </span>
         </div>
         
       </div>
-      <div ref={buttonDiv} className={`fixed bottom-10 right-3 z-50 transition-opacity duration-300 ${showScrollButton ? 'opacity-100' : 'opacity-0'}`}>
-        <button
-          onClick={scrollToBottom}
-          className="btn btn-circle w-12 h-12 bg-neutral-100 hover:bg-neutral-300 btn-ghost text-white"
-        >
-          <Image src={downArrow} alt="down arrow" className="w-7 h-7"/>
-        </button>
-      </div>
+        <div ref={buttonDiv} className={`fixed bottom-10 right-3 z-50 transition-opacity duration-300 ${showScrollButton ? 'opacity-100' : 'opacity-0'}`}>
+          <button
+            onClick={scrollToBottom}
+            className="btn btn-circle w-12 h-12 bg-neutral-100 hover:bg-neutral-300 btn-ghost text-white"
+          >
+            <Image src={downArrow} alt="down arrow" className="w-7 h-7"/>
+          </button>
+        </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 max-w-full mx-auto justify-center">
         {images.map((image, index) => (

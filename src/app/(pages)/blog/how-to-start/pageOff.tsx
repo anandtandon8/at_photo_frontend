@@ -56,7 +56,7 @@ const components = [
 
 export default function HowToStart() {
     return (
-        <main className="bg-white">
+        <main className="bg-white overflow-hidden">
             <Header />
             <Navbar />
 

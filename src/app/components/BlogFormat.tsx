@@ -71,9 +71,10 @@ const BlogFormat: React.FC<BlogComponents> = ({ title, description, date, author
     const [imageSrc, setImageSrc] = useState<{ [key: number]: string }>({});
     const [showScrollButton, setShowScrollButton] = useState(false);
     const fullImgBox = useRef<HTMLDivElement>(null);
-    const fullImg = useRef<HTMLImageElement>(null);
+    const [enlargedImage, setEnlargedImage] = useState(placeHolderImg);
     const blogDiv = useRef<HTMLDivElement>(null);
     const buttonDiv = useRef<HTMLDivElement>(null);
+    const [imageLoaded, setImageLoaded] = useState(false);
 
     const handleImageError = (index: number) => {
         setImageSrc(prev => ({
@@ -83,17 +84,20 @@ const BlogFormat: React.FC<BlogComponents> = ({ title, description, date, author
     };
 
     const focusImage = (image: Image) => {
-        if (fullImgBox.current && fullImg.current) {
+        if (fullImgBox.current) {
             fullImgBox.current.style.display = 'flex';
-            fullImg.current.src = image.src;
-            console.log(image.src);
+            setEnlargedImage(image);
+            setShowScrollButton(false);
         }
     }
 
     const closeFullImg = () => {
         if (fullImgBox.current) {
             fullImgBox.current.style.display = 'none';
+            setShowScrollButton(true);
+            handleScroll();
         }
+        setImageLoaded(false);
     }
 
     const scrollToBottom = () => {
@@ -133,16 +137,21 @@ const BlogFormat: React.FC<BlogComponents> = ({ title, description, date, author
         className="fixed inset-0 hidden bg-black/80 items-center justify-center z-50"
         >
             <div className="relative">
-                <img 
-                ref={fullImg}
-                className="w-auto h-auto max-w-[65vw] max-h-[75vh] object-contain rounded-xl"
-                alt="Enlarged view"
+                <Image 
+                    placeholder="blur"
+                    blurDataURL={enlargedImage.blurDataURL}
+                    src={enlargedImage.src}
+                    width={enlargedImage.width}
+                    height={enlargedImage.height}
+                    className="w-auto h-auto max-w-[65vw] max-h-[75vh] object-contain rounded-xl"
+                    alt="Enlarged view"
+                    onLoad={() => setImageLoaded(true)}
                 />
                 <span 
                     onClick={closeFullImg}
-                    className="absolute -top-[72px] -right-[56px] text-white text-6xl cursor-pointer hover:text-gray-300"
+                className={`absolute top-[-72px] right-[-56px] text-white text-6xl cursor-pointer hover:text-gray-300 transition-opacity duration-[600ms] ${imageLoaded ? 'opacity-100' : 'opacity-0'}`}
                 >
-                    ×
+                ×
                 </span>
             </div>
         </div>

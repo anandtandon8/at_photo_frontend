@@ -56,14 +56,14 @@ const favouriteImages = [
 
 export default function Favourites() {
     return (
-        <main className="bg-white">
+        <main className="bg-white overflow-hidden">
             <Header />
             <Navbar />
 
             <GalleryFormat 
                 images={favouriteImages}
                 title="Favourites"
-                description="These are some of my favourite photos. I'm not a professional but I love to capture the beauty of nature."
+                description="These are some of my favourite photos. I hope you enjoy them."
             />
 
             <Contact />
