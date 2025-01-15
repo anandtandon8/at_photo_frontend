@@ -37,10 +37,10 @@ export const Navbar:React.FC = () => {
             Collection
           </div>
           <ul className="dropdown-content menu bg-base-100 rounded-box z-50 p-2 shadow text-black text-base sm:text-lg md:text-xl font-medium md:min-w-max lg:min-w-max">
-            <li><button><Link href="/collection/car-photography">Car Photography</Link></button></li>
-            <li><button><Link href="/collection/nature-photography">Nature Photography</Link></button></li>
-            <li><button><Link href="/collection/portrait-photography">Portrait Photography</Link></button></li>
-            <li><button><Link href="/collection/street-photography">Street Photography</Link></button></li>
+            <li><a href="/collection/car-photography">Car Photography</a></li>
+            <li><a href="/collection/nature-photography">Nature Photography</a></li>
+            <li><a href="/collection/portrait-photography">Portrait Photography</a></li>
+            <li><a href="/collection/street-photography">Street Photography</a></li>
           </ul>
         </div>
 
@@ -54,8 +54,8 @@ export const Navbar:React.FC = () => {
             Blog
           </div>
           <ul className="dropdown-content menu bg-base-100 rounded-box z-50 p-2 shadow text-black text-base sm:text-lg md:text-xl font-medium md:min-w-max lg:min-w-max">
-            <li><button><Link href="/blog/camera-basics">Camera Basics</Link></button></li>
-            <li><button><Link href="/blog/rules-of-composition">Rules of Composition</Link></button></li>
+            <li><a href="/blog/camera-basics">Camera Basics</a></li>
+            <li><a href="/blog/rules-of-composition">Rules of Composition</a></li>
           </ul>
         </div>
       </div>
