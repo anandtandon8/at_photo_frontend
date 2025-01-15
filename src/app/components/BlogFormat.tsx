@@ -86,6 +86,9 @@ const BlogFormat: React.FC<BlogComponents> = ({ title, description, date, author
     const focusImage = (image: Image) => {
         if (fullImgBox.current) {
             fullImgBox.current.style.display = 'flex';
+            if (enlargedImage.src === image.src) {
+                setTimeout(() => setImageLoaded(true), 120);
+            }
             setEnlargedImage(image);
             setShowScrollButton(false);
         }
@@ -139,7 +142,7 @@ const BlogFormat: React.FC<BlogComponents> = ({ title, description, date, author
             <div className="relative">
                 <Image 
                     placeholder="blur"
-                    blurDataURL={enlargedImage.blurDataURL}
+                    blurDataURL={enlargedImage.blurDataURL || placeHolderImg.blurDataURL}
                     src={enlargedImage.src}
                     width={enlargedImage.width}
                     height={enlargedImage.height}

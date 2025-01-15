@@ -2,6 +2,7 @@ import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 
+import placeHolderImg from '@/app/assets/img/placeholder-img.png';
 
 interface Image {
     type: 'image';
@@ -32,7 +33,7 @@ const BlogBlock: React.FC<BlogBlockProps> = ({ title, link, image, description, 
                 quality={40}
                 width={image.width}
                 height={image.height}
-                blurDataURL={image.blurDataURL}
+                blurDataURL={image.blurDataURL || placeHolderImg.blurDataURL}
                 placeholder="blur"
             />
         </div>
