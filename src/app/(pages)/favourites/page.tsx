@@ -41,7 +41,7 @@ export default function Favourites() {
             <GalleryFormat 
                 images={favouriteImages}
                 title="Favourites"
-                description="These are some of my favourite photos. I hope you enjoy them."
+                description="These are my personal favourite photos. I hope you enjoy them."
             />
 
             <Contact />
