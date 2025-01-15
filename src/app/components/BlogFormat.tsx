@@ -168,7 +168,7 @@ const BlogFormat: React.FC<BlogComponents> = ({ title, description, date, author
             </button>
         </div>
 
-        <div className="flex flex-col-reverse lg:flex-row lg:justify-between items-start pt-6 -mb-8 lg:pb-2 lg:mb-0 lg:mr-10">
+        <div className="flex flex-col-reverse lg:flex-row lg:justify-between items-start pt-8 lg:pt-10 -mb-8 lg:pb-2 lg:mb-0 lg:mr-10">
             <div className="mx-auto w-auto mt-5 lg:mt-0 lg:sticky lg:-top-[calc(4*420px-80px-100vh)]">
                 <BlogViewer title={title} />
             </div>

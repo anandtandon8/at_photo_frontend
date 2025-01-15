@@ -16,10 +16,6 @@ export const Navbar:React.FC = () => {
     }
   };
 
-  const handleLinkClick = (event: React.MouseEvent<HTMLAnchorElement>) => {
-    event.stopPropagation();
-  };
-
   return (
     <div className="navbar bg-base-100 md:mt-2 lg:mt-4 xl:mt-5 -mb-8 sm:-mb-8 md:-mb-6 flex flex-col sm:flex-row items-center justify-center w-full md:gap-6 lg:gap-12">
       <div className="flex -mb-3 sm:mb-0 md:gap-6 lg:gap-12">
@@ -41,10 +37,10 @@ export const Navbar:React.FC = () => {
             Collection
           </div>
           <ul className="dropdown-content menu bg-base-100 rounded-box z-50 p-2 shadow text-black text-base sm:text-lg md:text-xl font-medium md:min-w-max lg:min-w-max">
-            <li><div><Link href="/collection/car-photography" onClick={handleLinkClick}>Car Photography</Link></div></li>
-            <li><div><Link href="/collection/nature-photography" onClick={handleLinkClick}>Nature Photography</Link></div></li>
-            <li><div><Link href="/collection/portrait-photography" onClick={handleLinkClick}>Portrait Photography</Link></div></li>
-            <li><div><Link href="/collection/street-photography" onClick={handleLinkClick}>Street Photography</Link></div></li>
+            <li><button><Link href="/collection/car-photography">Car Photography</Link></button></li>
+            <li><button><Link href="/collection/nature-photography">Nature Photography</Link></button></li>
+            <li><button><Link href="/collection/portrait-photography">Portrait Photography</Link></button></li>
+            <li><button><Link href="/collection/street-photography">Street Photography</Link></button></li>
           </ul>
         </div>
 
@@ -58,8 +54,8 @@ export const Navbar:React.FC = () => {
             Blog
           </div>
           <ul className="dropdown-content menu bg-base-100 rounded-box z-50 p-2 shadow text-black text-base sm:text-lg md:text-xl font-medium md:min-w-max lg:min-w-max">
-            <li><div><Link href="/blog/camera-basics" onClick={handleLinkClick}>Camera Basics</Link></div></li>
-            <li><div><Link href="/blog/rules-of-composition" onClick={handleLinkClick}>Rules of Composition</Link></div></li>
+            <li><button><Link href="/blog/camera-basics">Camera Basics</Link></button></li>
+            <li><button><Link href="/blog/rules-of-composition">Rules of Composition</Link></button></li>
           </ul>
         </div>
       </div>
