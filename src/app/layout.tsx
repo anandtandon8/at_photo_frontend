@@ -2,8 +2,6 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { Saira } from "next/font/google"
-import { Lexend } from "next/font/google"
-
 
 const saira = Saira({
   subsets: ['latin'],
@@ -29,6 +27,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${saira.variable} ${inter.variable}`}>
+      <meta property="og:title" content="Anand Tandon Photography"/>
+      <meta property="og:image" content="/ATPhotoThumbnail.png"/>
+      <meta property="og:description" content="An interactive photography portfolio"/>
+      <meta property="og:url" content="https://atphoto.net"/>
+      <meta property="og:image:width" content="1200" />
+      <meta property="og:image:height" content="627"/>
+      <meta property="og:type" content="website"/> 
       <body className={saira.className}>{children}</body>
     </html>
   );
