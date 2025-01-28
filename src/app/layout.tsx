@@ -28,7 +28,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${saira.variable} ${inter.variable}`}>
       <meta property="og:title" content="Anand Tandon Photography"/>
-      <meta property="og:image" content="/ATPhotoThumbnail.png"/>
+      <meta property="og:image" content="https://atphoto.net/ATPhotoThumbnail.png"/>
       <meta property="og:description" content="An interactive photography portfolio"/>
       <meta property="og:url" content="https://atphoto.net"/>
       <meta property="og:image:width" content="1200" />
