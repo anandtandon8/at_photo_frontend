@@ -116,7 +116,7 @@ export const Hero: React.FC<HeroProps> = ({ row1, row2 }) => {
                                 onError={() => handleImageError(i)}
                                 placeholder="blur"
                                 blurDataURL={photo.blurDataURL || placeHolderImg.blurDataURL}
-                                loading="eager"
+                                loading="lazy"
                                 className="filter contrast-[0.8] w-full h-auto object-cover aspect-square rounded-[13px]"
                             />
                         </div>
@@ -138,7 +138,7 @@ export const Hero: React.FC<HeroProps> = ({ row1, row2 }) => {
                                 quality={30}
                                 placeholder="blur"
                                 blurDataURL={photo.blurDataURL || placeHolderImg.blurDataURL}
-                                loading="eager"
+                                loading="lazy"
                                 className="filter contrast-[0.8] w-full h-auto object-cover aspect-square rounded-[13px]"
                             />
                         </div>
