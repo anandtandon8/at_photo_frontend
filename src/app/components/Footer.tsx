@@ -22,7 +22,6 @@ export const Footer:React.FC = () => {
         const email = formData.get('email');
 
         try {
-            console.log(API_URL);
             const response = await fetch(API_URL, {
                 method: 'POST',
                 headers: {

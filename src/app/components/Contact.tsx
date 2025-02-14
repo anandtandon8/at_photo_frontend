@@ -27,7 +27,6 @@ export const Contact:React.FC = () => {
         };
 
         try {
-            console.log(API_URL);
             const response = await fetch(API_URL, {
                 method: 'POST',
                 headers: {
