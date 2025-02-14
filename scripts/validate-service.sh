@@ -2,10 +2,10 @@
 sleep 10
 
 echo "Checking container status..."
-docker ps | grep atphoto
+sudo docker ps | grep atphoto
 
 echo "Checking container logs..."
-docker logs atphoto
+sudo docker logs atphoto
 
 echo "Checking port status..."
 echo "Container port:"
@@ -19,6 +19,6 @@ if curl -f http://localhost:5000 > /dev/null 2>&1 && curl -f http://localhost > 
     exit 0
 else
     echo "Application is not running"
-    docker ps -a
+    sudo docker ps -a
     exit 1
 fi 
