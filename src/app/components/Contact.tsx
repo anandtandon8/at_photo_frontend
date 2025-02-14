@@ -54,7 +54,7 @@ export const Contact:React.FC = () => {
 
     return <div className="h-[324px] px-2 sm:px-8 pt-8 w-full text-center max-w-xl md:max-w-2xl xl:max-w-[800px] mx-auto">
         <h1 className="text-black pb-0.5 text-[22px] text-xl leading-8 font-semibold">Contact Me</h1>
-        <h2 className="text-black pb-4 text-[15px]">The site is broken. I&apos;ll get back to you as soon as I can. You can also reach me directly at <a href="mailto:anandtandon8@gmail.com" target="_blank" className="text-blue-500 hover:underline hover:text-blue-300 focus:underline focus:text-blue-300">anandtandon8@gmail.com</a>.</h2>
+        <h2 className="text-black pb-4 text-[15px]">I&apos;ll get back to you as soon as I can. You can also reach me directly at <a href="mailto:anandtandon8@gmail.com" target="_blank" className="text-blue-500 hover:underline hover:text-blue-300 focus:underline focus:text-blue-300">anandtandon8@gmail.com</a>.</h2>
         <form
         onSubmit={handleSubmit}
         className="flex flex-col justify-center items-center px-4 h-full w-full"
