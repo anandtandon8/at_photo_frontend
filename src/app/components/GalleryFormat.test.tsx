@@ -10,7 +10,7 @@ test('GalleryFormat component renders correctly', () => {
     images: [
         { 
             src: placeholder.src,
-            alt: 'placeholder',
+            alt: 'placeholderImg',
             width: placeholder.width,
             height: placeholder.height,
             blurDataURL: placeholder.blurDataURL
