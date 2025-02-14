@@ -10,6 +10,8 @@ interface NewsletterResponse {
     ok: boolean;
 }
 
+const API_URL = 'https://api.atphoto.net/api/newsletter';
+
 export const Footer:React.FC = () => {
     const [isSubmitted, setIsSubmitted] = useState(false);
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -20,13 +22,15 @@ export const Footer:React.FC = () => {
         const email = formData.get('email');
 
         try {
-            const response = await fetch('http://localhost:3000/api/newsletter', {
+            const response = await fetch(API_URL, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({email}),
             });
+
+            console.log(API_URL);
 
             const data: NewsletterResponse = await response.json();
 

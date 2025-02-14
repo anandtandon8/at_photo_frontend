@@ -8,6 +8,8 @@ interface ContactResponse {
     ok: boolean;
 }
 
+const API_URL = 'https://api.atphoto.net/api/contact-form';
+
 export const Contact:React.FC = () => {
     const [isSubmitted, setIsSubmitted] = useState(false);
 
@@ -25,13 +27,15 @@ export const Contact:React.FC = () => {
         };
 
         try {
-            const response = await fetch('https://api.atphoto.net/api/contact-form', {
+            const response = await fetch(API_URL, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify(data),
             });
+
+            console.log(API_URL);
 
             const responseData : ContactResponse = await response.json();
 
