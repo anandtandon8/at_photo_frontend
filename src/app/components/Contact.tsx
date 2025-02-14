@@ -27,6 +27,7 @@ export const Contact:React.FC = () => {
         };
 
         try {
+            console.log(API_URL);
             const response = await fetch(API_URL, {
                 method: 'POST',
                 headers: {
@@ -34,8 +35,6 @@ export const Contact:React.FC = () => {
                 },
                 body: JSON.stringify(data),
             });
-
-            console.log(API_URL);
 
             const responseData : ContactResponse = await response.json();
 
