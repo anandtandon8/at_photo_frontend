@@ -91,6 +91,9 @@ const BlogFormat: React.FC<BlogComponents> = ({ title, description, date, author
             }
             setEnlargedImage(image);
             setShowScrollButton(false);
+            if (buttonDiv.current) {
+                buttonDiv.current.style.pointerEvents = 'none';
+            }
         }
     }
 
@@ -108,36 +111,39 @@ const BlogFormat: React.FC<BlogComponents> = ({ title, description, date, author
         if (bottomDiv) {
           bottomDiv.scrollIntoView({ behavior: 'smooth', block: 'end' });
         }
-      };
+    };
     
-      const handleScroll = () => {
-        if (blogDiv.current) {
-            if ((blogDiv.current.getBoundingClientRect().bottom - window.innerHeight) > 400) {
+    const handleScroll = () => {
+    if (blogDiv.current) {
+        if ((blogDiv.current.getBoundingClientRect().bottom - window.innerHeight) > 400) {
+            if (fullImgBox.current?.style.display === 'none') {
                 setShowScrollButton(true);
                 if (buttonDiv.current) {
                     buttonDiv.current.style.pointerEvents = 'auto';
                 }
             }
-            else {
-                setShowScrollButton(false);
-                if (buttonDiv.current) {
-                    buttonDiv.current.style.pointerEvents = 'none';
-                }
+        }
+        else {
+            setShowScrollButton(false);
+            if (buttonDiv.current) {
+                buttonDiv.current.style.pointerEvents = 'none';
             }
         }
-      };
+    }
+    };
     
-      useEffect(() => {
-        handleScroll();
-        window.addEventListener('scroll', handleScroll);
-        return () => window.removeEventListener('scroll', handleScroll);
-      }, []);
+    useEffect(() => {
+    handleScroll();
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+    }, []);
     
     
     return <div>
         <div 
         ref={fullImgBox}
         className="fixed inset-0 hidden bg-black/80 items-center justify-center z-50"
+        style={{display: 'none'}}
         >
             <div className="relative">
                 <Image 

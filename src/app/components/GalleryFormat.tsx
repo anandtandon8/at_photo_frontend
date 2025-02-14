@@ -45,6 +45,9 @@ const GalleryFormat: React.FC<GalleryFormatProps> = ({ images, title, descriptio
       }
       setEnlargedImage(image);
       setShowScrollButton(false);
+      if (buttonDiv.current) {
+        buttonDiv.current.style.pointerEvents = 'none';
+      }
     }
   }
 
@@ -68,10 +71,12 @@ const GalleryFormat: React.FC<GalleryFormatProps> = ({ images, title, descriptio
   const handleScroll = () => {
     if (GalleryDiv.current) {
       if ((GalleryDiv.current.getBoundingClientRect().bottom - window.innerHeight) > 400) {
+        if (fullImgBox.current?.style.display === 'none') {
           setShowScrollButton(true);
           if (buttonDiv.current) {
               buttonDiv.current.style.pointerEvents = 'auto';
           }
+        }
       }
       else {
           setShowScrollButton(false);
@@ -95,6 +100,7 @@ const GalleryFormat: React.FC<GalleryFormatProps> = ({ images, title, descriptio
       <div 
         ref={fullImgBox}
         className="h-screen w-screen fixed inset-0 hidden bg-black/80 items-center justify-center z-50"
+        style={{display: 'none'}}
       >
         <div className="relative">
             <Image 
