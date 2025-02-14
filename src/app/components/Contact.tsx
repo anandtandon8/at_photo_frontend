@@ -25,7 +25,7 @@ export const Contact:React.FC = () => {
         };
 
         try {
-            const response = await fetch('http://api.atphoto.net/api/contact-form', {
+            const response = await fetch('https://api.atphoto.net/api/contact-form', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
