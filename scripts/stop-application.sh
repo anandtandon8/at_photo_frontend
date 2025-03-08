@@ -1,5 +1,5 @@
 #!/bin/bash
 if [ "$(docker ps -q --filter "name=atphoto")" ]; then
-    sudo docker stop atphotopls
-    sudo docker rm atphotopls
+    sudo docker stop atphoto
+    sudo docker rm atphoto
 fi 
