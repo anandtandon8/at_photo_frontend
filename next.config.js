@@ -1,8 +1,21 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  images: process.env.NODE_ENV === 'test' ? {
-    unoptimized: true
-  } : {},
-}
+  images: {
+    domains: ['images.atphoto.net', 'localhost'],
+    remotePatterns: [
+      {
+        protocol: 'http',
+        hostname: 'localhost',
+        port: '3000',
+        pathname: '/images/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'images.atphoto.net',
+        pathname: '/**',
+      },
+    ],
+  },
+};
 
-module.exports = nextConfig 
+module.exports = nextConfig; 

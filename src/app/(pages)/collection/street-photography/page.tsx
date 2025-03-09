@@ -1,47 +1,47 @@
+'use client'
+
+import { useState, useEffect } from 'react';
 import Header from "@/app/components/Header"
 import Navbar from "@/app/components/Navbar";
 import Contact from "@/app/components/Contact"
 import Footer from "@/app/components/Footer"
 import GalleryFormat from "@/app/components/GalleryFormat";
-import fs from 'fs'
-import path from 'path'
-
-interface GalleryImage {
-  src: string;
-  alt: string;
-  width: number;
-  height: number;
-  blurDataURL?: string;
-}
-
-const streetImagesDirectory = path.join(process.cwd(), 'src/app/assets/img/Street')
-const streetImages: GalleryImage[] = fs.readdirSync(streetImagesDirectory)
-  .filter(file => /\.(jpg|jpeg|png)$/i.test(file))
-  .map(file => {
-    const image = require(`@/app/assets/img/Street/${file}`).default
-    return {
-      src: image.src,
-      alt: path.basename(file, path.extname(file)),
-      width: image.width,
-      height: image.height,
-      blurDataURL: image.blurDataURL
-    }
-  })
+import { fetchImages, GalleryImage } from '@/app/utils/imageUtils';
 
 export default function StreetPhotography() {
-    return (
-        <main className="bg-white overflow-hidden">
-            <Header />
-            <Navbar />
+  const [streetImages, setStreetImages] = useState<GalleryImage[]>([]);
+  const [loading, setLoading] = useState(true);
 
-            <GalleryFormat 
-                images={streetImages}
-                title="Street Photography"
-                description="Street photography is a major passion of mine."
-            />
+  useEffect(() => {
+    async function loadImages() {
+      setLoading(true);
+      const images = await fetchImages('street');
+      setStreetImages(images);
+      setLoading(false);
+    }
+    
+    loadImages();
+  }, []);
 
-            <Contact />
-            <Footer />
-        </main>
-    )
+  return (
+    <main className="bg-white overflow-hidden">
+        <Header />
+        <Navbar />
+        
+        {loading ? (
+          <div className="flex justify-center items-center min-h-[50vh]">
+            <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-gray-900"></div>
+          </div>
+        ) : (
+          <GalleryFormat 
+              images={streetImages}
+              title="Street Photography"
+              description="Street photography is a major passion of mine."
+          />
+        )}
+
+        <Contact />
+        <Footer />
+    </main>
+  );
 }
