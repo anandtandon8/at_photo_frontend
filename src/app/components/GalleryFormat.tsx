@@ -103,9 +103,7 @@ const GalleryFormat: React.FC<GalleryFormatProps> = ({ images, title, descriptio
         style={{display: 'none'}}
       >
         <div className="relative">
-            <Image 
-                placeholder="blur"
-                blurDataURL={enlargedImage.blurDataURL  || placeHolderImg.blurDataURL}
+            <img
                 src={enlargedImage.src}
                 width={enlargedImage.width}
                 height={enlargedImage.height}
@@ -134,14 +132,11 @@ const GalleryFormat: React.FC<GalleryFormatProps> = ({ images, title, descriptio
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 max-w-full mx-auto justify-center">
         {images.map((image, index) => (
           <div key={index} className="relative aspect-square overflow-visible max-w-full text-black cursor-pointer">
-            <Image
+            <img
               src={imageSrc[index] || image.src}
               alt={image.alt}
               width={image.width}
               height={image.height}
-              quality={30}
-              placeholder="blur"
-              blurDataURL={image.blurDataURL || placeHolderImg.blurDataURL}
               className="object-cover w-full rounded-md h-full will-change-transform transition-all duration-300 hover:[transform:scale(1.03)]"
               onError={() => handleImageError(index)}
               onClick={() => focusImage(image)}
