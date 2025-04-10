@@ -135,11 +135,16 @@ const GalleryFormat: React.FC<GalleryFormatProps> = ({ images, title, descriptio
             <img
               src={imageSrc[index] || image.src}
               alt={image.alt}
+              style={{ display: 'none' }}
               width={image.width}
               height={image.height}
               className="object-cover w-full rounded-md h-full will-change-transform transition-all duration-300 hover:[transform:scale(1.03)]"
               onError={() => handleImageError(index)}
               onClick={() => focusImage(image)}
+              onLoad={(e) => {
+                const imgElement = e.currentTarget;
+                imgElement.style.display = 'block';
+              }}
             />
           </div>
         ))}
