@@ -106,10 +106,14 @@ const GalleryFormat: React.FC<GalleryFormatProps> = ({ images, title, descriptio
             <img
                 src={enlargedImage.src}
                 width={enlargedImage.width}
+                style={{display: 'none'}}
                 height={enlargedImage.height}
                 className="w-auto h-auto max-w-[65vw] max-h-[75vh] object-contain rounded-xl"
                 alt="Enlarged view"
-                onLoad={() => setImageLoaded(true)}
+                onLoad={(e) => {
+                  setImageLoaded(true)
+                  e.currentTarget.style.display = 'block';
+                }}
             />
                 <span 
                     onClick={closeFullImg}
