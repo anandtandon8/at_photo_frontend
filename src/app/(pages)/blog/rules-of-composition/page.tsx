@@ -10,7 +10,7 @@ const components = [
     {
         type: 'text' as const,
         textType: 'h2' as const,
-        content: 'How do we learn composition?'
+        content: 'What is composition?'
     },
     {
         type: 'text' as const,
